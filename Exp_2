@@ -138,7 +138,7 @@ JANET           PRODUCTION
 NEVILLE         MARKETING
 
 11.
-UPDATE EMPLOYEE SET SALARY = SALARY + SALARY * 0.12;
+UPDATE EMPLOYEE SET SALARY = SALARY + SALARY * 0.12 WHERE DEPT='PRODUCTION';
 
 SQL> SELECT * FROM EMPLOYEE;
 
@@ -146,14 +146,14 @@ SQL> SELECT * FROM EMPLOYEE;
 ---------- --------------- ---------- ----------
          1 MICHAEL         PRODUCTION       2800
          2 JOE             PRODUCTION       2800
-         3 SMITH           SALES            2520
-         4 DAVID           MARKETING        3248
-         5 RICHARD         SALES            1792
-         6 JESSY           MARKETING        2016
-         7 JANE            SALES            2240
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
          8 JANET           PRODUCTION       3360
-         9 NEVILLE         MARKETING        3080
-        10 RICHARDSON      SALES            2128
+         9 NEVILLE         MARKETING        2750
+        10 RICHARDSON      SALES            1900
 
 
 12.
