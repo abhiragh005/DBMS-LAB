@@ -88,7 +88,7 @@ SELECT * FROM EMPLOYEE;
 
 
 7.
-UPDATE EMPLOYEE SET SALARY = 1900 WHERE EMP_NAME = 'RICHARDSON';
+UPDATE EMPLOYEE SET SALARY = 1900 WHERE EMP_NAME = 'RICHARD';
 
 SQL> SELECT * FROM EMPLOYEE;
 
@@ -98,7 +98,7 @@ SQL> SELECT * FROM EMPLOYEE;
          2 JOE             PRODUCTION       2500
          3 SMITH           SALES            2250
          4 DAVID           MARKETING        2900
-         5 RICHARD         SALES            1600
+         5 RICHARD         SALES            1900
          6 JESSY           MARKETING        1800
          7 JANE            SALES            2000
          8 JANET           PRODUCTION       3000
@@ -148,7 +148,7 @@ SQL> SELECT * FROM EMPLOYEE;
          2 JOE             PRODUCTION       2800
          3 SMITH           SALES            2250
          4 DAVID           MARKETING        2900
-         5 RICHARD         SALES            1600
+         5 RICHARD         SALES            1900
          6 JESSY           MARKETING        1800
          7 JANE            SALES            2000
          8 JANET           PRODUCTION       3360
