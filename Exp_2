@@ -1,0 +1,167 @@
+1.
+SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2500
+         2 JOE             PRODUCTION       2500
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
+         8 JANET           PRODUCTION       3000
+         9 NEVILLE         MARKETING        2750
+        10 RICHARDON       SALES            1800
+2.
+SELECT EMP_ID,EMP_NAME FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME
+---------- ---------------
+         1 MICHAEL
+         2 JOE
+         3 SMITH
+         4 DAVID
+         5 RICHARD
+         6 JESSY
+         7 JANE
+         8 JANET
+         9 NEVILLE
+        10 RICHARDON
+3.
+DELETE FROM EMPLOYEE WHERE EMP_ID=10;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2500
+         2 JOE             PRODUCTION       2500
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
+         8 JANET           PRODUCTION       3000
+         9 NEVILLE         MARKETING        2750
+
+4.
+INSERT INTO EMPLOYEE VALUES(10,'RICHARDSON','SALES',NULL);
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2500
+         2 JOE             PRODUCTION       2500
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
+         8 JANET           PRODUCTION       3000
+         9 NEVILLE         MARKETING        2750
+        10 RICHARDON       SALES            NULL
+
+5.
+SELECT * FROM EMPLOYEE WHERE DEPT='MARKETING';
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         4 DAVID           MARKETING        2900
+         6 JESSY           MARKETING        1800
+         9 NEVILLE         MARKETING        2750
+
+6.
+UPDATE EMPLOYEE SET SALARY=1900 WHERE EMP_ID=10;
+
+SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2500
+         2 JOE             PRODUCTION       2500
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
+         8 JANET           PRODUCTION       3000
+         9 NEVILLE         MARKETING        2750
+        10 RICHARDSON      SALES            1900
+
+
+7.
+UPDATE EMPLOYEE SET SALARY = 1900 WHERE EMP_NAME = 'RICHARDSON';
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2500
+         2 JOE             PRODUCTION       2500
+         3 SMITH           SALES            2250
+         4 DAVID           MARKETING        2900
+         5 RICHARD         SALES            1600
+         6 JESSY           MARKETING        1800
+         7 JANE            SALES            2000
+         8 JANET           PRODUCTION       3000
+         9 NEVILLE         MARKETING        2750
+        10 RICHARDSON      SALES            1900
+
+8.
+SELECT * FROM EMPLOYEE WHERE DEPT='MARKETING' AND SALARY > 2000;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         4 DAVID           MARKETING        2900
+         9 NEVILLE         MARKETING        2750
+
+9.
+SELECT EMP_NAME FROM EMPLOYEE WHERE DEPT='MARKETING' OR DEPT = 'SALES';
+
+EMP_NAME
+---------------
+SMITH
+DAVID
+RICHARD
+JESSY
+JANE
+NEVILLE
+RICHARDSON
+
+10.
+SELECT EMP_NAME,DEPT FROM EMPLOYEE WHERE SALARY BETWEEN 2300 AND 3000;
+
+EMP_NAME        DEPT
+--------------- ----------
+MICHAEL         PRODUCTION
+JOE             PRODUCTION
+DAVID           MARKETING
+JANET           PRODUCTION
+NEVILLE         MARKETING
+
+11.
+UPDATE EMPLOYEE SET SALARY = SALARY + SALARY * 0.12;
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME        DEPT           SALARY
+---------- --------------- ---------- ----------
+         1 MICHAEL         PRODUCTION       2800
+         2 JOE             PRODUCTION       2800
+         3 SMITH           SALES            2520
+         4 DAVID           MARKETING        3248
+         5 RICHARD         SALES            1792
+         6 JESSY           MARKETING        2016
+         7 JANE            SALES            2240
+         8 JANET           PRODUCTION       3360
+         9 NEVILLE         MARKETING        3080
+        10 RICHARDSON      SALES            2128
+
+
+12.
+SELECT EMP_NAME FROM EMPLOYEE WHERE SALARY<2000 OR DEPT = 'SALES';
+
+EMP_NAME
+---------------
+SMITH
+RICHARD
+JANE
+RICHARDSON
