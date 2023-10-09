@@ -1,0 +1,85 @@
+1.
+create table student(Rollno int, Name varchar(20),Mark1 int,Mark2 int);
+
+Table created.
+
+insert into student values(1, 'A',87,90);
+
+1 row created.
+
+insert into student values(2, 'B',87,54);
+
+1 row created.
+
+insert into student values(3,'C',76,32);
+
+1 row created.
+
+select * from student;
+
+    ROLLNO NAME                      MARK1      MARK2
+---------- -------------------- ---------- ----------
+         1 A                            87         90
+         2 B                            87         54
+         3 C                            76         32
+
+
+2.
+
+alter table Student add Mark3 int;
+
+Table altered.
+
+update student set Mark3 = 87 where RollNo=1;
+
+1 row updated.
+
+update student set Mark3 = 43 where RollNo=2;
+
+1 row updated.
+
+update student set Mark3 = 21 where RollNo=3;
+
+1 row updated.
+
+select * from student;
+
+    ROLLNO NAME                      MARK1      MARK2      MARK3
+---------- -------------------- ---------- ---------- ----------
+         1 A                            87         90         87
+         2 B                            87         54         43
+         3 C                            76         32         21
+
+3.
+
+alter table Student drop column Mark2;
+
+Table altered.
+
+SQL> select * from student;
+
+    ROLLNO NAME                      MARK1      MARK3
+---------- -------------------- ---------- ----------
+         1 A                            87         87
+         2 B                            87         43
+         3 C                            76         21
+
+4.
+
+alter table Student rename column Mark3 to Mark2;
+
+Table altered.
+
+SQL> select * from student;
+
+    ROLLNO NAME                      MARK1      MARK2
+---------- -------------------- ---------- ----------
+         1 A                            87         87
+         2 B                            87         43
+         3 C                            76         21
+
+5.
+
+Drop table Student;
+
+Table dropped.
