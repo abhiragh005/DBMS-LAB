@@ -1,0 +1,110 @@
+1.
+
+SQL> create table customer(cust_id int, name varchar(10),hname varchar(10),street varchar(10),phone 
+int);
+Table created.
+
+SQL> insert into customer values(1, 'A','AHouse','AStreet',9188387373);
+1 row created.
+SQL> insert into customer values(2,'B','BHouse','BStreet',9244445421);
+1 row created.
+SQL> insert into customer values(3,'C','CHouse','CStreet',9530014430);
+1 row created.
+
+SQL> select * from customer;
+
+   CUST_ID NAME       HNAME      STREET          PHONE
+---------- ---------- ---------- ---------- ----------
+         1 A          AHouse     AStreet    9188387373
+         2 B          BHouse     BStreet    9244445421
+         3 C          CHouse     CStreet    9530014430
+
+2.
+
+SQL> create table items(item_code int, name varchar(10),Stock_number int, unit_price int);
+Table created.
+
+SQL> insert into items values(1, 'item_1',1000,10000);
+1 row created.
+SQL> insert into items values(2, 'item_2',2000,20000);
+1 row created.
+SQL> insert into items values(3, 'item_3',3000,30000);
+1 row created.
+
+SQL> select * from items;
+
+ ITEM_CODE NAME       STOCK_NUMBER UNIT_PRICE
+---------- ---------- ------------ ----------
+         1 item_1             1000      10000
+         2 item_2             2000      20000
+         3 item_3             3000      30000
+
+3.
+
+SQL> create table orders(order_id int, cust_id int,item_code int,order_date date,expiry_date date,de
+liver_date date,payment_mode char(1));
+Table created.
+
+SQL> insert into orders values(1,1,1,'31-may-98','31-may-99','04-jun-98','D');
+1 row created.
+SQL> insert into orders values(2,2,2,'28-jul-03','28-dec-03','29-aug-03','R');
+1 row created.
+SQL> insert into orders values(3,3,3,'23-aug-02','16-dec-04','21-sep-04','C');
+1 row created.
+
+SQL> select * from orders;
+
+  ORDER_ID    CUST_ID  ITEM_CODE ORDER_DAT EXPIRY_DA DELIVER_D P
+---------- ---------- ---------- --------- --------- --------- -
+         1          1          1 31-MAY-98 31-MAY-99 04-JUN-98 D
+         2          2          2 28-JUL-03 28-DEC-03 29-AUG-03 R
+         3          3          3 23-AUG-02 16-DEC-04 21-SEP-04 C
+
+4.
+
+SQL> alter table customer add constraints p1k primary key(cust_id);
+Table altered.
+
+5.
+
+SQL> alter table items add constraints p2k primary key(item_code);
+Table altered.
+
+6.
+
+SQL> alter table orders add constraints foreign key references customer(cust_id);
+Table altered.
+
+7.
+
+SQL> alter table orders modify order_id constraint c2 unique;
+Table altered.
+
+8.
+
+SQL> alter table orders modify order_date constraint c1 not null;
+Table altered.
+
+9.
+
+SQL> alter table orders add constraints c3 check (payment_mode in ('D','R','C'));
+Table altered.
+
+SQL> update orders set payment_mode='A' where order_id=1;
+
+ERROR at line 1:
+ORA-02290: check constraint (SCOTT.C3) violated
+
+10.
+
+SQL> alter table orders add remark char(10) default 'direct';
+Table altered.
+
+SQL> select * from orders;
+
+  ORDER_ID    CUST_ID  ITEM_CODE ORDER_DAT EXPIRY_DA DELIVER_D P REMARK
+---------- ---------- ---------- --------- --------- --------- - ----------
+         1          1          1 31-MAY-98 31-MAY-99 04-JUN-98 D direct
+         2          2          2 28-JUL-03 28-DEC-03 29-AUG-03 R direct
+         3          3          3 23-AUG-02 16-DEC-04 21-SEP-04 C direct
+
