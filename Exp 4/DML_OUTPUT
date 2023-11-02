@@ -1,0 +1,76 @@
+22.
+
+SQL> select order_id as order_code,delivery_date as date_of_delivery from order_db;
+
+ORDER_CODE DATE_OF_D
+---------- ---------
+         1 04-JAN-98
+         2 29-AUG-03
+         3 21-SEP-04
+
+23.
+
+SQL> select cust_name from customer_db where cust_name like '%a%j%' or cust_name like '%j%a%';
+
+CUST_NAME
+----------
+ajith
+
+
+24.
+
+
+SQL> select (length(min(CUST_NAME))) from customer_db;
+
+(LENGTH(MIN(CUST_NAME)))
+------------------------
+                       5
+
+25. 
+
+SQL> create table deliver_db as select * from order_db;
+
+Table created.
+
+SQL> select * from deliver_db;
+
+  ORDER_ID    CUST_ID  ITEM_CODE ORDER_DAT EXPIRY_DA DELIVERY_ P
+---------- ---------- ---------- --------- --------- --------- -
+         1          1          1 31-MAY-98 31-MAY-99 04-JAN-98 D
+         2          2          2 28-JUL-03 28-DEC-03 29-AUG-03 R
+         3          3          3 23-AUG-02 16-DEC-04 21-SEP-04 C
+
+
+26.
+
+SQL> insert into deliver_db values(176,4911,1001,'02-jul-20','03-jul-22','06-dec-23','C');
+
+1 row created.
+
+SQL>  select * from deliver_db union select * from order_db;
+
+  ORDER_ID    CUST_ID  ITEM_CODE ORDER_DAT EXPIRY_DA DELIVERY_ P
+---------- ---------- ---------- --------- --------- --------- -
+         1          1          1 31-MAY-98 31-MAY-99 04-JAN-98 D
+         2          2          2 28-JUL-03 28-DEC-03 29-AUG-03 R
+         3          3          3 23-AUG-02 16-DEC-04 21-SEP-04 C
+         4          4          4 02-JUL-20 03-JUL-22 06-DEC-23 C
+
+27.
+
+SQL> select order_id from deliver_db intersect select order_id from order_db;
+
+  ORDER_ID
+----------
+         1
+         2
+         3
+
+28.
+
+SQL> select order_id from deliver_db where delivery_date>SYSDATE;
+
+  ORDER_ID
+----------
+       176
+       176
