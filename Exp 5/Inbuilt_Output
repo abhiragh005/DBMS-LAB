@@ -130,3 +130,14 @@ ATM_NO               ACC_HOLDER           VALID_FRO EXPIRY_DA
 4352-2327-4717-1773  Tijo                 02-SEP-23 21-DEC-20
 0083-7873-0214-1274  Bibin                29-NOV-23 29-NOV-19
 
+10.
+
+SQL> select ((to_char(SYSDATE,'YYYY') - to_char(valid_from,'YYYY')) + 18) as Bincy_Age from acct_details where acc_holder='Bincy';
+
+ BINCY_AGE
+----------
+        36
+
+11.
+
+
