@@ -88,4 +88,10 @@ SYSDATE   REMAINING_DAYS
 
 7.
 
+SQL> select acc_holder from acct_details where expiry_date=(select max(expiry_date) from acct_details);
+
+ACC_HOLDER
+--------------------
+Nirmal
+
 
