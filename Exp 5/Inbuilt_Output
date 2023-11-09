@@ -140,4 +140,19 @@ SQL> select ((to_char(SYSDATE,'YYYY') - to_char(valid_from,'YYYY')) + 18) as Bin
 
 11.
 
+SQL> select acc_holder, EXTRACT(YEAR from expiry_date) as Expiry_year from acct_details;
+
+ACC_HOLDER           EXPIRY_YEAR
+-------------------- -----------
+James                       2022
+Thomas                      2024
+Tijo                        2020
+Alice                       2025
+Nevin                       2021
+Nirmal                      2025
+Sampath                     2021
+Bibin                       2019
+Bincy                       2018
+Grace                       2021
+
 
