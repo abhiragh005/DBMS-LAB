@@ -31,3 +31,27 @@ ROUND(MONTHS_BETWEEN(SYSDATE,TO_DATE(VALID_FROM)))
 --------------------------------------------------
                                                130
 
+2.
+
+SQL> select acc_holder from acct_details where valid_from=(select max(valid_from) from acct_details)
+;
+
+ACC_HOLDER
+--------------------
+Alice
+
+4.
+
+SQL> update acct_details set expiry_date='16-may-25' where acc_holder='Nirmal';
+
+1 row updated.
+
+SQL> select round(expiry_date - SYSDATE) from acct_details where acc_holder='Nirmal';
+
+ROUND(EXPIRY_DATE-SYSDATE)
+--------------------------
+                       553
+
+5.
+`
+
