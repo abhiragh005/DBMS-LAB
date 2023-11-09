@@ -115,3 +115,18 @@ ATM_NO               ACC_HOLDER           VALID_FROM EXPIRY_DATE
 3347-8987-2410-1372  Bincy                20-OCT-05  20-OCT-18
 1629-9107-4412-1472  Grace                09-AUG-08  08-AUG-21
 
+9.
+
+SQL> update acct_details set valid_from = '02-sep-23' where acc_holder='Tijo';
+1 row updated.
+
+SQL>  update acct_details set valid_from = '29-nov-23' where acc_holder='Bibin';
+1 row updated.
+
+SQL> select * from acct_details where TO_CHAR(valid_from, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY');
+
+ATM_NO               ACC_HOLDER           VALID_FRO EXPIRY_DA
+-------------------- -------------------- --------- ---------
+4352-2327-4717-1773  Tijo                 02-SEP-23 21-DEC-20
+0083-7873-0214-1274  Bibin                29-NOV-23 29-NOV-19
+
