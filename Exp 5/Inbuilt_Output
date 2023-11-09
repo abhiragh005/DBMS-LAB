@@ -1,4 +1,3 @@
-
 ATM_NO               ACC_HOLDER VALID_FRO EXPIRY_DA
 -------------------- ---------- --------- ---------
 4375-0107=2415-1578  James      05-AUG-10 05-AUG-22
@@ -11,3 +10,24 @@ ATM_NO               ACC_HOLDER VALID_FRO EXPIRY_DA
 0083-7876-0214-1274  Bibin      29-NOV-06 29-NOV-18
 3367-8987-2410-1372  Bincy      20-OCT-05 20-OCT-17
 1629-9107-4412-1472  Grace      08-AUG-08 08-AUG-20
+
+insert into acct_details values('4375-0107-2415-1578','James','05-aug-10','05-aug-22');
+insert into acct_details values('3241-1217-2416-1670','Thomas','02-sep-12','02-sep-24');
+insert into acct_details values('4352-2327-4717-1773','Tijo','21-dec-07','21-dec-19');
+insert into acct_details values('5532-3435-5316-1876','Alice','17-jan-13','17-jan-25');
+insert into acct_details values('3652-4543-6414-1975','Nevin','19-feb-09','19-feb-21');
+insert into acct_details values('8324-5657-7018-1073','Nirmal','16-may-11','16-may-23');
+insert into acct_details values('4205-6760-4412-1176','Sampath','11-aug-08','11-aug-20');
+insert into acct_details values('0083-7873-0214-1274','Bibin','29-nov-06','29-nov-18');
+insert into acct_details values('3347-8987-2410-1372','Bincy','20-oct-05','20-oct-17');
+insert into acct_details values('1629-9107-4412-1472','Grace','08-aug-08','08-aug-20');
+
+1.
+
+SQL> select round(months_between(SYSDATE, to_date(valid_from))) from acct_details where acc_holder='
+Alice';
+
+ROUND(MONTHS_BETWEEN(SYSDATE,TO_DATE(VALID_FROM)))
+--------------------------------------------------
+                                               130
+
