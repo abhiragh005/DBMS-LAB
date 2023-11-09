@@ -94,4 +94,24 @@ ACC_HOLDER
 --------------------
 Nirmal
 
+8.
+
+SQL> update acct_details set valid_from = valid_from + 1 where acc_holder = 'Grace';
+
+1 row updated.
+
+SQL> select * from acct_details;
+
+ATM_NO               ACC_HOLDER           VALID_FROM EXPIRY_DATE
+-------------------- -------------------- ---------- -----------
+4375-0107-2415-1578  James                05-AUG-10  05-AUG-22
+3241-1217-2416-1670  Thomas               02-SEP-12  02-SEP-24
+4352-2327-4717-1773  Tijo                 21-DEC-07  21-DEC-20
+5532-3435-5316-1876  Alice                17-JAN-13  17-JAN-25
+3652-4543-6414-1975  Nevin                19-FEB-09  19-FEB-21
+8324-5657-7018-1073  Nirmal               16-MAY-11  16-MAY-25
+4205-6760-4412-1176  Sampath              11-AUG-08  11-AUG-21
+0083-7873-0214-1274  Bibin                29-NOV-06  29-NOV-19
+3347-8987-2410-1372  Bincy                20-OCT-05  20-OCT-18
+1629-9107-4412-1472  Grace                09-AUG-08  08-AUG-21
 
