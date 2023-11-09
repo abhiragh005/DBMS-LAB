@@ -54,7 +54,7 @@ ROUND(EXPIRY_DATE-SYSDATE)
 
 5.
 
-SQL> select expiry_date, add_months(expiry_date,24) from acct_details;
+SQL> select expiry_date, add_months(expiry_date,24) from acct_details; ****
 
 EXPIRY_DATE ADD_MONTH
 ----------- ---------
@@ -68,5 +68,24 @@ EXPIRY_DATE ADD_MONTH
 29-NOV-19   29-NOV-21
 20-OCT-18   20-OCT-20
 08-AUG-21   08-AUG-23
+
+6.
+
+SQL> select SYSDATE, round(SYSDATE - expiry_date) AS Remaining_days from acct_details;
+
+SYSDATE   REMAINING_DAYS
+--------- --------------
+09-NOV-23            462
+09-NOV-23           -297
+09-NOV-23           1054
+09-NOV-23           -434
+09-NOV-23            994
+09-NOV-23           -553
+09-NOV-23            821
+09-NOV-23           1442
+09-NOV-23           1847
+09-NOV-23            824
+
+7.
 
 
