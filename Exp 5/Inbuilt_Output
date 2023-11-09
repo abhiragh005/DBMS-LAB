@@ -53,5 +53,20 @@ ROUND(EXPIRY_DATE-SYSDATE)
                        553
 
 5.
-`
+
+SQL> select expiry_date, add_months(expiry_date,24) from acct_details;
+
+EXPIRY_DATE ADD_MONTH
+----------- ---------
+05-AUG-22   05-AUG-24
+02-SEP-24   02-SEP-26
+21-DEC-20   21-DEC-22
+17-JAN-25   17-JAN-27
+19-FEB-21   19-FEB-23
+16-MAY-25   16-MAY-27
+11-AUG-21   11-AUG-23
+29-NOV-19   29-NOV-21
+20-OCT-18   20-OCT-20
+08-AUG-21   08-AUG-23
+
 
