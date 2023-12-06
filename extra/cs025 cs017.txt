@@ -1,0 +1,121 @@
+create table account_details25(ATM_NO varchar(20),acct_holder varchar(20),valid_from date,expiry_date date);
+
+insert into account_details25 values('2345678745','james','05-aug-10','10-aug-23');
+insert into account_details25 values('2357890964','thomas','02-sep-12','02-sep-24');
+insert into account_details25 values('21346875233','tijo','21-dec-07','21-dec-21');
+insert into account_details25 values('3467907467','alice','17-jan-13','17-jan-25');
+insert into account_details25 values('67893202928','nevin','19-feb-05','19-feb-22');
+insert into account_details25 values('66868731276','nirmal','16-may-11','16-may-23');
+insert into account_details25 values('3456723456','asothee','30-nov-12','30-nov-24');
+insert into account_details25 values('78903456787','noufa','11-aug-08','11-aug-20');
+insert into account_details25 values('39034876787','sandro','29-nov-07','29-nov-19');
+insert into account_details25 values('4267190300','snega','08-oct-09','08-oct-21');
+
+select*from account_details25;
+
+select round(months_between(SYSDATE,to_date(valid_from)))from account_details25 where acct_holder='alice';
+select acct_holder from account_details25 where valid_from=(select max(valid_from)from account_details25);
+
+update account_details25 set expiry_date='17-may-25' where acct_holder='nirmal';
+select round(expiry_date-sysdate)from account_details25 where acct_holder='nirmal';
+
+select expiry_date,add_months(expiry_date,12)from account_details25 where valid_from < '01-jan-09';
+
+select sysdate,round(sysdate-expiry_date)AS remaining_days from account_details25;
+
+select acct_holder from account_details25 where expiry_date=(select max(expiry_date)from account_details25;
+
+update account_details25 set valid_from=valid_from +1 where acct_holder='asothee';
+select*from account_details25 where to_char(valid_from,'YYYY')=to_char(sysdate,'YYYY');
+
+ SELECT((to_char(sysdate,'YYYY')- to_char(valid_from,'YYYY'))+18) AS thomas_age from account_details25 where acct_holder='thomas';
+
+select acct_holder,EXTRACT(YEAR from expiry_date)as expiry_year from account_details25;
+
+
+
+create table STUDENT25(ROLL_NO int,NAME varchar(20),PHYSICS int,CHEMISTRY int,MATHS int);
+
+
+insert into STUDENT25 values(1,'Adam',20,20,33);
+insert into STUDENT25 values(2,'Bob',18,9,41);
+insert into STUDENT25 values(3,'Bright',22,7,31);
+insert into STUDENT25 values(4,'Duke',13,21,20);
+insert into STUDENT25 values(5,'Elvin',14,22,23);
+insert into STUDENT25 values(6,'Fletcher',2,10,48);
+insert into STUDENT25 values(7,'Georgina',22,12,22);
+insert into STUDENT25 values(8,'Mary',24,14,31);
+insert into STUDENT25 values(9,'Tom',19,15,24);
+insert into STUDENT25 values(10,'Zack',8,20,36);
+
+select*from STUDENT25;
+
+SELECT avg(PHYSICS)from STUDENT25;
+select max(MATHS)as Highest_marks_maths from STUDENT25;
+select min(CHEMISTRY)as Lowest_mark_Chemisrty from STUDENT25;
+select COUNT(PHYSICS)from STUDENT25 where PHYSICS>=12;
+select*from STUDENT25 where PHYSICS>=12 AND CHEMISTRY>=12 AND MATHS>=25;
+ ALTER  table STUDENT25 ADD totalmark int ADD RESULT varchar(10);
+UPDATE STUDENT25 set totalmark=PHYSICS+CHEMISTRY+MATHS;
+UPDATE STUDENT25 set RESULT='P' where PHYSICS>=12 AND CHEMISTRY>=12 AND MATHS>=25;
+UPDATE STUDENT25 set RESULT='F' where PHYSICS>=12 OR CHEMISTRY>=12 OR MATHS>=25;
+ select COUNT(MATHS)*10as pass_percentage_maths from STUDENT25 where MATHS>=25;
+select COUNT(RESULT)*10 as pass_percentage from STUDENT25 where result='P';
+SELECT sum(totalmark)/10 AS class_avg from STUDENT25;
+ select count(RESULT) from STUDENT25 where RESULT='P';
+
+
+create table customer25(custid int primary key,custname varchar(20),address varchar(20),state varchar(20));
+create table item25(itemid int primary key,itemname varchar(20),category varchar(20),price int,instock int);
+ create table order25(orderid int primary key,custid int,itemid int,quantity int,orderdate date);
+create table delivery25(deliveryid int primary key,custid int,orderid int);
+desc delivery25;
+
+alter table order25 add foreign key (itemid) references item25(itemid) add foreign key(custid)references customer25(custid);
+
+alter table delivery25 add foreign key (custid) references customer25(custid) add foreign key(o
+rderid) references order25(orderid);
+
+insert into item14 values(1,'batman','toys',10,2);
+insert into item25 values(2,'laptop','electronics',699,5);
+insert into item25 values(3,'galaxy','electronics',500,15);
+insert into item25 values(4,'sony z5 premium','electronics',5004,1);
+
+insert into customer25 values(111,'elvin','202 jai street','delhi');
+insert into customer25 values(112,'patrick','street 1 harinagar','chennai');
+insert into customer25 values(113,'soman','puthumana p.o','kerala');
+insert into customer25 values(114,'jaise','kottarakara','kerala');
+insert into customer25 values(115,'mickey','juhu','mumbai');
+
+insert into order25 values(911,111,1,50,'11-oct-2014');
+insert into order25 values(912,112,2,25,'29-jan-2012');
+insert into order25 values(913,113,3,33,'16-may-2013');
+insert into order25 values(914,114,4,35,'22-dec-2014');
+
+insert into delivery25 values(667,115,914);
+insert into delivery25 values(669,111,913);
+insert into delivery25 values(670,113,912);
+
+select*from customer25;
+select*from item25 where price>(select avg(price)from item25);
+select*from customer25 order by state;
+
+
+
+
+
+select*from customer25 left join order25 on customer25.custid=order25.custid;
+select*from customer25 where custid in(select custid from delivery25);
+select* from customer25 where custid in(select custid from order25 where itemid in(select itemid from item25 where price>5000));
+select* from customer25 where custid in(select custid from order25 where quantity=(select max(quantity)from order25));
+select custname from customer25 where custid in(select custid from order25) intersect select custname from customer25 where custid in(select custid from delivery25);
+select custname from customer25 where custid in(select custid from order25) minus select custname from customer25 where custid in(select custid from delivery25);
+ select* from customer25 where custid in(select custid from order25 where quantity=(select max(quantity)from order25));
+select orderdate from order25 where custid in(select custid from customer25 where custname like 'j%');
+select*from item25 where price>(select avg(price)from item25) order by category;
+ select*from customer25 where custid in(select custid from order25 where orderdate>'31-jan-2013'and orderid not in(select orderid from delivery25));
+select itemname,price from item25 where itemid in(select itemid from order25 where custid in(select custid from customer25 where custname='mickey'));
+
+
+
+

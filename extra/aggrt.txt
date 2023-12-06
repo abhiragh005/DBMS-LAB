@@ -1,0 +1,182 @@
+create table student(rollno int,name varchar(10),physics int,chem int,maths int);
+
+Table created.
+
+SQL> insert into students values(1,'adam',20,20,33)'
+  2  insert into students values(1,'adam',20,20,33);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into students values(1,'adam',20,20,33);
+insert into students values(1,'adam',20,20,33)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into student  values(1,'adam',20,20,33);
+
+1 row created.
+
+SQL> insert into student  values(2,'bob',18,9,41);
+
+1 row created.
+
+SQL> insert into student  values(3,'bright',22,7,31);
+
+1 row created.
+
+SQL> insert into student  values(4,'duke',13,21,20);
+
+1 row created.
+
+SQL> insert into student  values(5,'elvin',14,22,23);
+
+1 row created.
+
+SQL> insert into student  values(6,'flec',2,10,48);
+
+1 row created.
+
+SQL> insert into student  values(7,'geo',22,12,22);
+
+1 row created.
+
+SQL> insert into student  values(8,'mary',24,14,31);
+
+1 row created.
+
+SQL> insert into student  values(9,'tom',9,15,24);
+
+1 row created.
+
+SQL> insert into student  values(10,'zack',8,20,36);
+
+1 row created.
+
+SQL> select * from student;
+
+    ROLLNO NAME          PHYSICS       CHEM      MATHS
+---------- ---------- ---------- ---------- ----------
+         1 adam               20         20         33
+         2 bob                18          9         41
+         3 bright             22          7         31
+         4 duke               13         21         20
+         5 elvin              14         22         23
+         6 flec                2         10         48
+         7 geo                22         12         22
+         8 mary               24         14         31
+         9 tom                 9         15         24
+        10 zack                8         20         36
+
+10 rows selected.
+
+SQL> select avg(physics)from student;
+
+AVG(PHYSICS)
+------------
+        15.2
+
+SQL> select max(maths)as highest from student;
+
+   HIGHEST
+----------
+        48
+
+SQL> select min(chem)as lowest from student;
+
+    LOWEST
+----------
+         7
+
+SQL> select count(physics)from student where physics>=12;
+
+COUNT(PHYSICS)
+--------------
+             7
+
+SQL> select * from student where physics>=12 and chem>=12 and maths>=25;
+
+    ROLLNO NAME          PHYSICS       CHEM      MATHS
+---------- ---------- ---------- ---------- ----------
+         1 adam               20         20         33
+         8 mary               24         14         31
+
+SQL> alter table student add totalmarkint add result varchar(10);
+alter table student add totalmarkint add result varchar(10)
+                                     *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL>  alter table student add totalmark int add result varchar(10);
+
+Table altered.
+
+SQL> update student set totalmark=physics+chem+maths;
+
+10 rows updated.
+
+SQL> update student set result='p' where physics>=12 and chem>=12 and maths>=25;
+
+2 rows updated.
+
+SQL> update student set result='f' where physics<12 or chem<12 or maths<25;
+
+8 rows updated.
+
+SQL> select * from student order by total desc;
+select * from student order by total desc
+                               *
+ERROR at line 1:
+ORA-00904: "TOTAL": invalid identifier
+
+
+SQL> select * from student order by totalmark desc;
+
+    ROLLNO NAME          PHYSICS       CHEM      MATHS  TOTALMARK RESULT
+---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 adam               20         20         33         73 p
+         8 mary               24         14         31         69 p
+         2 bob                18          9         41         68 f
+        10 zack                8         20         36         64 f
+         3 bright             22          7         31         60 f
+         6 flec                2         10         48         60 f
+         5 elvin              14         22         23         59 f
+         7 geo                22         12         22         56 f
+         4 duke               13         21         20         54 f
+         9 tom                 9         15         24         48 f
+
+10 rows selected.
+
+SQL> select count(maths)*10 as pass from student where maths>=25;
+
+      PASS
+----------
+        60
+
+SQL> select count(result)*10 as passper from student where result='p';
+
+   PASSPER
+----------
+        20
+
+SQL> select sum(totalmark)/10 as class average from student;
+select sum(totalmark)/10 as class average from student
+                                  *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  select sum(totalmark)/10 as classavg from student;
+
+  CLASSAVG
+----------
+      61.1
+
+SQL> select count(result) from student where result='p';
+
+COUNT(RESULT)
+-------------
+            2
