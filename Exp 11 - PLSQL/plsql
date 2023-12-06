@@ -1,0 +1,240 @@
+1.
+DECLARE
+	Aint;
+	Bint;
+BEGIN
+	a:=:a;
+	b:=:b;
+	dbms_output.put_line('sum is'||(a+b));
+	dbms_output.put_line('difference is'||(a-b));
+	dbms_output.put_line('product is'||(a*b));
+	dbms_output.put_line('qoutient is'||(a/b));
+	END
+
+OUTPUT:
+A:30
+B:5
+
+sum is35
+difference is25
+product is150
+quotient is6
+
+Statement processed.
+
+2.
+
+DECLARE
+	Iint;
+	j int;
+	Nint;
+	Numint;
+	cntint
+	flag int;
+
+BEGIN
+	flag:=0;
+	int:=0;
+	num:=2;
+	While int<20
+	Loop
+	flag:=0;
+	i:=num;
+	for j in
+	2..i/2 loop
+	If mod(i,j)=0 then
+	flag:=1;
+	end if;
+	end loop;
+	if flag=0 then
+	Int:int+1;
+	dbms_output.put_line(i);
+	end if;
+	num:=num+1;
+	end loop;
+	END;
+
+OUTPUT:
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+53
+59
+61
+67
+71
+
+Statement processed.
+
+
+
+
+
+3.
+
+DECLARE
+	Aint;
+	Bint;
+	Cint;
+	Cntint;
+	i int;
+BEGIN
+	i:=:I;
+	int:=1;
+	a:=0;
+	b:=1;
+	dbms_output,put_line(a);
+	dbms_output,put_line(b);
+	for int in 1..i-2
+	Loop
+	c:=a+b;
+	dbms_output,put_line(c);a:=b;
+	b:=c;
+	end loop;
+	END
+
+4.
+	CREATE TABLEstudent_grade(roll int,name varchar2(10),mark 1 int,mark2
+int,mark3 int,gradevarchar(5));
+
+DECLARE
+	Totalint;
+	avrg float;
+	roll int;
+	mark1 int;
+	mark2 int;
+	mark3 int;
+	grade varchar2(5);
+	name varchar2(10);
+	BEGIN
+	roll:=:roll;
+	name:=:name:
+	mark1:=:mark1;mark2:=:mark2;
+	mark3:=:mark3;
+	total:=mark1+mark2+mark3;
+	avrg:=total/3;
+	ifavrg>40 then
+	grade:=’PASS’;else
+	grade:=’FAIL’;end if;
+	insert into student_grade values(roll,name,mark1,mark2,mark3,grade);
+	END;
+
+select* from student_grade
+
+ROLL		NAME 	MARK1 	MARK2 	MARK3 	GRADE
+—----		—-----		—-------	—-------	—-------	—--------
+1 		anu 		50 		45 		48 		PASS
+2 		manu 		50 		50 		50 		PASS
+3 		manu 		35 		40 		40 		FAIL
+
+
+
+5.
+
+create table circle_area(radius int,area float(5));
+
+DECLARE
+	Radiusint;
+	Iint;
+	area float;
+BEGIN
+	radius:=0;
+	for i in 1.5 loop
+	radius:=radius+5;
+	area:=3.14*power(radius,2);
+	INSERT INTO circle_areavalues(radius,area);
+	end loop;
+	END;
+
+SELECT * from circle_area;
+
+RADIUS 	AREA
+—--------	—-----
+5 		79
+10		310
+15 		710
+20 		1300
+25 		2000
+
+
+
+
+6.
+
+CREATE TABLEstud(names varchar2(10),marks int);
+
+DECLARE
+	typestdnames is varray(10) of varchar2(10);
+	typestdmarks is varray(10) of int;
+	Namesstdnames;
+	Marksstdmarks;
+	Iint;
+BEGIN
+	names:=stdnames('ARUN','AMAL','PETER','JOSE','ANNIE','MARY','JOSEPH','MARK'
+	,'MIDHUN','KEVIN');
+	marks:=stdmarks(25,76,43,45,67,57,97,56,89,08);
+	for i in 1..10 loop
+	INSERT INTO stud values(names(i),marks(i));
+	end loop;
+	END;
+
+SELECT * from stud
+NAMES 	MARKS
+—-------	—-------
+ARUN 	25
+AMAL		76
+PETER 	43
+JOSE 		45
+ANNIE 	67
+MARY 	57
+JOSEPH 	97
+MARK 	56
+MIDHUN 	89
+KEVIN 	8
+
+7.
+
+CREATE TABLE class_cse(roll int,name varchar2(10),phone varchar(20));
+create sequence seql
+start with 1
+increment by 1
+maxvalue 10
+DECLARE
+	typestdnameis varray(10) of varchar2(10);
+	typestdphoneis varray(10) of varchar2(20);
+	Namestdname;
+	phonestphone
+BEGIN
+	name:=stdname('ARUN','AMAL','PETER','JOSE','ANNIE');
+	phone:=stdphone('0482-239091','0484-234562','0485-11234','0489-43617','0481-23145'
+	for i in 1..5 loop
+	INSERT INTOclass_csevalues(seql.nextval,name(i),phone(i));
+	end loop;
+	END;
+
+
+
+SELECT * from class_cse;
+
+ROLL 		NAME 	PHONE
+—-----		—------		—--------
+1 		ARUN 	0482-239091
+2 		AMAL		0484-234562
+3 		PETER 	0485-11234
+4 		JOSE 		0489-43617
+5 		ANNIE 	0481-23145
+
+
+

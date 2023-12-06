@@ -1,8 +1,0 @@
-1.
-
-select * from customer order by state;
-
-
-2.
-
-select * from items where price>(select avg(price) from items) order by category;

@@ -1,3 +1,0 @@
-# DBMS_LAB
-
-SOON......
